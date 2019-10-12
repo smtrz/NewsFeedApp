@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='TransferWise_Task_1'
