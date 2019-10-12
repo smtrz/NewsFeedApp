@@ -1,11 +1,13 @@
 package com.tahir.transferwise_task_1.Models;
 
 
+import java.util.List;
+
 public class News
 {
     private String totalResults;
 
-    private Articles[] articles;
+    private List<Articles> articles;
 
     private String status;
 
@@ -19,12 +21,12 @@ public class News
         this.totalResults = totalResults;
     }
 
-    public Articles[] getArticles ()
+    public List<Articles> getArticles ()
     {
         return articles;
     }
 
-    public void setArticles (Articles[] articles)
+    public void setArticles (List<Articles> articles)
     {
         this.articles = articles;
     }

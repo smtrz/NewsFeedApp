@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey;
 public class Articles {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
+    public int id;
     private String publishedAt;
 
     private String author;
@@ -17,13 +18,20 @@ public class Articles {
 
     private String description;
 
-    private Source source;
+   // private Source source;
 
     private String title;
 
     private String url;
 
     private String content;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPublishedAt() {
         return publishedAt;
@@ -57,13 +65,7 @@ public class Articles {
         this.description = description;
     }
 
-    public Source getSource() {
-        return source;
-    }
 
-    public void setSource(Source source) {
-        this.source = source;
-    }
 
     public String getTitle() {
         return title;
