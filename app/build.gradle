@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+    def BASE_URL = '\"https://newsapi.org/v2/"'
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.tahir.transferwise_task_1"
