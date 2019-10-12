@@ -15,27 +15,94 @@
         <LinearLayout
             android:id="@+id/top_header"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:background="#000"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/top_inner_header"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp"
+
+                    android:src="@drawable/news_icon">
+
+
+                </ImageView>
+
+                <LinearLayout
+                    android:id="@+id/inner_content_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Title goes here"
+
+                        android:textSize="16sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/secondary_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Secondary Text"
+                        android:textColor="#000"
+                        android:textSize="12sp"></TextView>
+                </LinearLayout>
+            </LinearLayout>
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="16dp"
+                android:layout_width="344dp"
+                android:layout_height="194dp"
+                android:src="@drawable/sample_image"></ImageView>
 
-                android:src="@drawable/news_icon">
-
-
-            </ImageView>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_marginTop="16dp"
-                android:text="Title goes here"></TextView>
-        </LinearLayout>
+                android:layout_height="116dp"
 
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:maxLines="2"
+                    android:text="The House is moving forward with its impeachment inquiry into President Donald Trump. Follow here for the latest."
+                    android:textStyle="bold"></TextView>
+
+                <LinearLayout
+                    android:id="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="16dp"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_favorite_border_black_24dp"></ImageView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_share_black_24dp"></ImageView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
