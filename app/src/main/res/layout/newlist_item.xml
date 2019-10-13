@@ -91,19 +91,22 @@
                 android:layout_marginBottom="@dimen/_8dp"
                 android:gravity="center_vertical|right"
                 android:padding="@dimen/_8dp"
-                android:text="Author" />
+                android:text="Author"
+                android:visibility="gone" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/share"
-              android:src="@drawable/ic_share_black_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/newsInfo"
+                android:layout_alignRight="@id/published"
                 android:layout_marginBottom="@dimen/_8dp"
-                android:layout_toLeftOf="@id/author"
+                android:drawableLeft="@drawable/ic_share_black_24dp"
+                android:drawablePadding="8dp"
                 android:gravity="center_vertical|right"
                 android:padding="@dimen/_8dp"
-                 />
+                android:text="SHARE"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

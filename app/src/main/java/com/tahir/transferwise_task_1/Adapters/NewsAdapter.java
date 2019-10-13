@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> implements RecyclerView.OnClickListener {
 
     Context context;
     List<Articles> articles;
@@ -85,12 +85,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
 
     public class NewsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.thumbnail)
         ImageView thumbnail;
         @BindView(R.id.share)
-        ImageView share;
+        TextView share;
         @BindView(R.id.published_date)
         TextView publishedDate;
         @BindView(R.id.newsTitle)

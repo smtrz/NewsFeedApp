@@ -1,10 +1,14 @@
 package com.tahir.transferwise_task_1;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -13,8 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.tahir.transferwise_task_1.Activities.News_Detail_Activity;
 import com.tahir.transferwise_task_1.Adapters.NewsAdapter;
 import com.tahir.transferwise_task_1.Helpers.ProgressDialogHelper;
+import com.tahir.transferwise_task_1.Helpers.RecyclerItemClickListener;
 import com.tahir.transferwise_task_1.Interfaces.NewsListInterface;
 import com.tahir.transferwise_task_1.Models.Articles;
 import com.tahir.transferwise_task_1.ViewModels.MainActivityViewModel;
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NewsListInterface
     ProgressDialog sd = null;
     @BindView(R.id.pullToRefresh)
     SwipeRefreshLayout pullToRefresh;
+    List<Articles> a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +51,13 @@ public class MainActivity extends AppCompatActivity implements NewsListInterface
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
         init();
 
         newsViewModel.getAllItems().observe(this, new Observer<List<Articles>>() {
             @Override
             public void onChanged(@Nullable List<Articles> articles) {
-                adapter.loadItems(articles, MainActivity.this);
+                a = articles;
+                adapter.loadItems(articles, MainActivity.this::ifListisEmpty);
                 adapter.notifyDataSetChanged();
 
             }
@@ -71,6 +78,16 @@ public class MainActivity extends AppCompatActivity implements NewsListInterface
 
             }
         });
+
+        rvNews.addOnItemTouchListener(new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent i = new Intent(MainActivity.this, News_Detail_Activity.class);
+                i.putExtra("news", a.get(position));
+                startActivity(i);
+            }
+        }));
 
     }
 
