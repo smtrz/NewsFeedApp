@@ -17,6 +17,9 @@ public interface ArticlesDao {
     void insertItem(List<Articles> items);
 
     @Query("SELECT * from articles")
-    MutableLiveData<List<Articles>> getallItems();
+    LiveData<List<Articles>> getallItems();
+
+    @Query("DELETE FROM articles")
+    void delete();
 }
 
