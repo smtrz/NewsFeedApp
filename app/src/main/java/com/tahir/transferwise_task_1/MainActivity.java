@@ -11,16 +11,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.tahir.transferwise_task_1.Activities.BaseActivity;
 import com.tahir.transferwise_task_1.Activities.News_Detail_Activity;
 import com.tahir.transferwise_task_1.Adapters.NewsAdapter;
 import com.tahir.transferwise_task_1.Helpers.ProgressDialogHelper;
 import com.tahir.transferwise_task_1.Helpers.RecyclerItemClickListener;
+import com.tahir.transferwise_task_1.Helpers.UIHelper;
 import com.tahir.transferwise_task_1.Interfaces.NewsListInterface;
 import com.tahir.transferwise_task_1.Models.Articles;
 import com.tahir.transferwise_task_1.ViewModels.MainActivityViewModel;
@@ -31,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements NewsListInterface {
+public class MainActivity extends BaseActivity implements NewsListInterface {
 
     MainActivityViewModel newsViewModel;
     @BindView(R.id.rvNews)
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements NewsListInterface
     @BindView(R.id.pullToRefresh)
     SwipeRefreshLayout pullToRefresh;
     List<Articles> a;
+    @BindView(R.id.parent)
+    ConstraintLayout parent_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +88,14 @@ public class MainActivity extends AppCompatActivity implements NewsListInterface
 
             @Override
             public void onItemClick(View view, int position) {
-                Intent i = new Intent(MainActivity.this, News_Detail_Activity.class);
-                i.putExtra("news", a.get(position));
-                startActivity(i);
+                try {
+                    Intent i = new Intent(MainActivity.this, News_Detail_Activity.class);
+                    i.putExtra("news", a.get(position));
+                    startActivity(i);
+                } catch (Exception e) {
+
+                    UIHelper.showSnackToast(parent_layout, "Unable to load the selected news article.");
+                }
             }
         }));
 

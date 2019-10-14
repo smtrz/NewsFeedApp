@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ProgressDialogHelper {
 

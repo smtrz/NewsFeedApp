@@ -16,7 +16,6 @@ import com.tahir.transferwise_task_1.Networking.RetrofitClient;
 
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

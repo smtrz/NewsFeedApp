@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.tahir.transferwise_task_1.Components.DaggerAppLevelComponent;
 import com.tahir.transferwise_task_1.Helpers.DateHelper;
 import com.tahir.transferwise_task_1.Helpers.GeneralHelper;
 import com.tahir.transferwise_task_1.Interfaces.NewsListInterface;
@@ -20,6 +21,8 @@ import com.tahir.transferwise_task_1.Models.Articles;
 import com.tahir.transferwise_task_1.R;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,10 +34,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     List<Articles> articles;
     @BindView(R.id.share)
     ImageView share;
+    @Inject
+    DateHelper dh;
 
     public NewsAdapter(Context context, List<Articles> articles) {
         this.context = context;
         this.articles = articles;
+        DaggerAppLevelComponent.create().inject(this);
+
     }
 
     public void loadItems(List<Articles> newItems, NewsListInterface ni) {
@@ -54,7 +61,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         try {
             holder.newsTitle.setText(articles.get(position).getTitle());
-            holder.published.setText(DateHelper.calculateDateDifference(articles.get(position).getPublishedAt()));
+            holder.published.setText(dh.calculateDateDifference(articles.get(position).getPublishedAt()));
             holder.newsInfo.setText(articles.get(position).getDescription());
             holder.author.setText(articles.get(position).getAuthor());
 
