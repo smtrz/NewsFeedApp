@@ -1,7 +1,6 @@
 package com.tahir.transferwise_task_1.Helpers;
 
-import com.tahir.transferwise_task_1.Components.AppLevelComponent;
-import com.tahir.transferwise_task_1.Components.DaggerAppLevelComponent;
+import com.tahir.transferwise_task_1.Components.DaggerDateComponent;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +16,7 @@ public class DateHelper {
     SimpleDateFormat dateFormat;
 
     public String calculateDateDifference(String newsDate) {
-        DaggerAppLevelComponent.create().inject(this);
+        DaggerDateComponent.create().inject(this);
         String difference = null;
         try {
             Date newsdate = dateFormat.parse(newsDate);

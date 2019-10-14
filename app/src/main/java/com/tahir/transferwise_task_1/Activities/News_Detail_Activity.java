@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.squareup.picasso.Picasso;
-import com.tahir.transferwise_task_1.Components.DaggerAppLevelComponent;
+import com.tahir.transferwise_task_1.Components.DaggerDateComponent;
 import com.tahir.transferwise_task_1.Helpers.DateHelper;
 import com.tahir.transferwise_task_1.Models.Articles;
 import com.tahir.transferwise_task_1.R;
@@ -43,7 +41,7 @@ public class News_Detail_Activity extends BaseActivity {
     }
 
     public void init() {
-        DaggerAppLevelComponent.create().inject(this);
+        DaggerDateComponent.create().inject(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle data = getIntent().getExtras();

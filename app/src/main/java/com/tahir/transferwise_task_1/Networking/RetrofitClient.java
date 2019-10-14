@@ -25,12 +25,12 @@ public class RetrofitClient {
 
 
         if (mInstance == null) {
-            mInstance = new Retrofit.Builder()
-                    .baseUrl(ApiConstants.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient.build())
-                    .build();
+        mInstance = new Retrofit.Builder()
+        .baseUrl(ApiConstants.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(httpClient.build())
+        .build();
         }
         return mInstance;
-    }
-}
+        }
+        }

@@ -9,13 +9,15 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = ContextModule.class)
+
+@Module
+        (includes = ContextModule.class)
 
 public class DbRepoModule {
 
 
-    @Singleton
     @Provides
+    @Singleton
     public DbRepository getRepository(Context c) {
 
         return new DbRepository(c);

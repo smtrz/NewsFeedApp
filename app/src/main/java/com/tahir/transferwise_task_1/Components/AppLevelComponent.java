@@ -2,40 +2,51 @@ package com.tahir.transferwise_task_1.Components;
 
 import android.content.Context;
 
-import com.tahir.transferwise_task_1.Activities.News_Detail_Activity;
-import com.tahir.transferwise_task_1.Adapters.NewsAdapter;
 import com.tahir.transferwise_task_1.Database.DbRepository;
-import com.tahir.transferwise_task_1.Helpers.DateHelper;
+import com.tahir.transferwise_task_1.Modules.ContextModule;
+import com.tahir.transferwise_task_1.Modules.DbRepoModule;
+import com.tahir.transferwise_task_1.Modules.NetModule;
+import com.tahir.transferwise_task_1.ViewModels.MainActivityViewModel;
+
+import javax.inject.Singleton;
+
+import dagger.Component;
+
+/*
+package com.tahir.transferwise_task_1.Components;
+
+import android.content.Context;
+
+import com.tahir.transferwise_task_1.Database.DbRepository;
 import com.tahir.transferwise_task_1.Modules.ContextModule;
 import com.tahir.transferwise_task_1.Modules.DateModule;
 import com.tahir.transferwise_task_1.Modules.DbRepoModule;
 import com.tahir.transferwise_task_1.ViewModels.MainActivityViewModel;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.inject.Singleton;
 
 import dagger.Component;
+
 @Singleton
-@Component(modules = {DateModule.class})
+@Component(modules = {ContextModule.class, DbRepoModule.class})
 
 public interface AppLevelComponent {
 
+    Context getContext();
 
-    Date getdate();
+    DbRepository getrepo();
 
-    SimpleDateFormat getdateformat();
+    void inject(MainActivityViewModel mvm);
 
-    void inject(DateHelper dh);
+}
+*/
+@Component(modules = {ContextModule.class, DbRepoModule.class,NetModule.class})
+@Singleton
+public interface AppLevelComponent {
 
-    void inject(NewsAdapter dh);
+    void inject(MainActivityViewModel ma);
+    void inject(DbRepository dr);
 
-    void inject(News_Detail_Activity dh);
+  //  void inject(DbRepository dr);
 
-    //Context getContext();
-
-    //DbRepository getrepo();
-
-  //  void inject(MainActivityViewModel mvm);
 }

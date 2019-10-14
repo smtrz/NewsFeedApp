@@ -1,30 +1,30 @@
 package com.tahir.transferwise_task_1.ViewModels;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.tahir.transferwise_task_1.Configurations.App;
 import com.tahir.transferwise_task_1.Database.DbRepository;
 import com.tahir.transferwise_task_1.Models.Articles;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivityViewModel extends AndroidViewModel {
 
-    //  MutableLiveData<List<Articles>> article_list;
 
-    //@Inject
+    @Inject
     DbRepository dbrepo;
 
     public MainActivityViewModel(Application application) {
+
         super(application);
-        dbrepo = new DbRepository(application);
-        dbrepo.getAllNews();
-        //  App.getApp().getAppLevelComponent().inject(this);
-        //  dbrepo = DbRepository.getInstance(application);
+        App.getApp().getAppLevelComponent().inject(this);
+
 
     }
 
@@ -33,16 +33,17 @@ public class MainActivityViewModel extends AndroidViewModel {
         return dbrepo.getallArticles();
 
     }
+
     public MutableLiveData<Boolean> ifDataIsloading() {
         return dbrepo.ifDataIsloading();
 
     }
 // just refresh the data based on the result.
 
-   public void callNewsAPI(){
-       dbrepo.getAllNews();
+    public void callNewsAPI() {
+        dbrepo.getAllNews();
 
-   }
+    }
 
 }
 

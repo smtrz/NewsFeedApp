@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.tahir.transferwise_task_1.Components.DaggerAppLevelComponent;
+import com.tahir.transferwise_task_1.Components.DaggerDateComponent;
 import com.tahir.transferwise_task_1.Helpers.DateHelper;
 import com.tahir.transferwise_task_1.Helpers.GeneralHelper;
 import com.tahir.transferwise_task_1.Interfaces.NewsListInterface;
@@ -26,7 +25,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> implements RecyclerView.OnClickListener {
 
@@ -40,7 +38,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public NewsAdapter(Context context, List<Articles> articles) {
         this.context = context;
         this.articles = articles;
-        DaggerAppLevelComponent.create().inject(this);
+        DaggerDateComponent.create().inject(this);
 
     }
 

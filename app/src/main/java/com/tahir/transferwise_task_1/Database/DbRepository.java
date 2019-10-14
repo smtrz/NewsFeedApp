@@ -1,44 +1,48 @@
 package com.tahir.transferwise_task_1.Database;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.tahir.transferwise_task_1.Helpers.ProgressDialogHelper;
+import com.tahir.transferwise_task_1.Configurations.App;
 import com.tahir.transferwise_task_1.Models.Articles;
 import com.tahir.transferwise_task_1.Models.News;
 import com.tahir.transferwise_task_1.Networking.EndpointsInterface;
-import com.tahir.transferwise_task_1.Networking.RetrofitClient;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class DbRepository {
-    static DbRepository dbr = null;
+
     ArticlesDao articleDao;
     // LiveData<List<Articles>> article_lists;
-    Context c;
+    //Context c;
+    @Inject
+    Retrofit retrofit;
     MutableLiveData<Boolean> dataLoading = new MutableLiveData<>();
 
-    public DbRepository(Context application) {
-        AppDB db = DbObject.getInstance(application);
-        articleDao = db.articleDao();
-        this.c = application;
+
+    DbRepository() {
+
+
     }
 
-    public static DbRepository getInstance(Context c) {
-        if (dbr == null) {
-            dbr = new DbRepository(c);
+    public DbRepository(Context application) {
 
-        }
-        return dbr;
+
+        AppDB db = DbObject.getInstance(application);
+        articleDao = db.articleDao();
+        App.getApp().getAppLevelComponent().inject(DbRepository.this);
+        // this.c = application;
     }
 
 
@@ -92,7 +96,7 @@ public class DbRepository {
     public void getAllNews() {
         dataLoading.setValue(true);
         //   ProgressDialog sd = ProgressDialogHelper.showDialog(c);
-        EndpointsInterface endpoints = RetrofitClient.getRetrofitInstance().create(EndpointsInterface.class);
+        EndpointsInterface endpoints = retrofit.create(EndpointsInterface.class);
         endpoints.getNewsList("us", "c10e794e2bfd4a778276f1480041ba73").enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {

@@ -3,6 +3,8 @@ package com.tahir.transferwise_task_1.Modules;
 import android.content.Context;
 
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -17,6 +19,7 @@ public class ContextModule {
 
 
     @Provides
+    @Singleton
     public Context provideContext() {
 
         return c;
