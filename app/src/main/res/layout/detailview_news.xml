@@ -16,7 +16,7 @@
             android:layout_height="250dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
-            android:src="@drawable/sample_image" />
+             />
 
         <TextView
             android:id="@+id/published_date"
