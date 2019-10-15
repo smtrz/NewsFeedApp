@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.tahir.transferwise_task_1.Configurations.App;
 import com.tahir.transferwise_task_1.Models.Articles;
 import com.tahir.transferwise_task_1.Models.News;
-import com.tahir.transferwise_task_1.Networking.EndpointsInterface;
+import com.tahir.transferwise_task_1.Interfaces.EndpointsInterface;
 
 import java.util.List;
 
@@ -24,29 +24,27 @@ import retrofit2.Retrofit;
 public class DbRepository {
 
     ArticlesDao articleDao;
-    // LiveData<List<Articles>> article_lists;
-    //Context c;
     @Inject
     Retrofit retrofit;
     MutableLiveData<Boolean> dataLoading = new MutableLiveData<>();
-
+    @Inject
+    Context c;
+    @Inject
+    AppDB db;
 
     DbRepository() {
-
+// empty constructor
 
     }
 
     public DbRepository(Context application) {
-
-
-        AppDB db = DbObject.getInstance(application);
-        articleDao = db.articleDao();
         App.getApp().getAppLevelComponent().inject(DbRepository.this);
-        // this.c = application;
+        articleDao = db.articleDao();
     }
 
 
     public LiveData<List<Articles>> getallArticles() {
+        getAllNews();
         return articleDao.getallItems();
 
     }
@@ -87,7 +85,6 @@ public class DbRepository {
         @Override
         protected Void doInBackground(Void... params) {
             mAsyncTaskDao.delete();
-            //mAsyncTaskDao.insertItem(params[0]);
             return null;
         }
     }
@@ -95,32 +92,26 @@ public class DbRepository {
     // network call to get all the news
     public void getAllNews() {
         dataLoading.setValue(true);
-        //   ProgressDialog sd = ProgressDialogHelper.showDialog(c);
+        //  pd.show();
         EndpointsInterface endpoints = retrofit.create(EndpointsInterface.class);
         endpoints.getNewsList("us", "c10e794e2bfd4a778276f1480041ba73").enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
                 dataLoading.setValue(false);
-                //   ProgressDialogHelper.cancelDialog(sd);
+
                 if (response.isSuccessful()) {
-                    // successful call
-                    //    Mutualable_article_lists.setValue(response.body().getArticles());
                     deleteAllitems();
                     insertItems(response.body().getArticles());
                 } else {
-                    // log the error and show the data from db
-                    // article_lists = getAllNews();
                 }
             }
 
             @Override
             public void onFailure(Call<News> call, Throwable t) {
                 dataLoading.setValue(false);
-                // log the error and show the data from db
-                // ProgressDialogHelper.cancelDialog(sd);
+
             }
         });
-        // return article_lists;
     }
 
     public MutableLiveData ifDataIsloading() {

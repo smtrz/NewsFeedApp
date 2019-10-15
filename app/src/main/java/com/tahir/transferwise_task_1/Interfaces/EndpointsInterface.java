@@ -1,4 +1,4 @@
-package com.tahir.transferwise_task_1.Networking;
+package com.tahir.transferwise_task_1.Interfaces;
 
 import com.tahir.transferwise_task_1.Models.News;
 

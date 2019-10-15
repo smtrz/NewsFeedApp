@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
-
+    // injecting repository
     @Inject
     DbRepository dbrepo;
 
@@ -24,8 +24,6 @@ public class MainActivityViewModel extends AndroidViewModel {
 
         super(application);
         App.getApp().getAppLevelComponent().inject(this);
-
-
     }
 
 

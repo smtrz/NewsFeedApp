@@ -42,12 +42,10 @@ public class News_Detail_Activity extends BaseActivity {
 
     public void init() {
         DaggerDateComponent.create().inject(this);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle data = getIntent().getExtras();
         Articles article = (Articles) data.getParcelable("news");
         Picasso.get().load(article.getUrlToImage()).into(thumbnail);
-        //DateHelper dh = new DateHelper();
         published.setText(dh.calculateDateDifference(article.getPublishedAt()) + "  |  " + article.getAuthor());
         newsTitle.setText(article.getTitle());
         newsInfo.setText(article.getDescription());

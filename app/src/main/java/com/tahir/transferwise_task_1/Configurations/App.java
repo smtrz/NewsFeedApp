@@ -33,8 +33,6 @@ public class App extends Application {
                 .contextModule(new ContextModule(this))
                 .dbRepoModule(new DbRepoModule())
                 .netModule(new NetModule("https://newsapi.org/v2/"))
-
-
                 .build();
 
 
