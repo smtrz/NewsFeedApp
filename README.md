@@ -1,5 +1,5 @@
 # NewsfeedApp
-Android news feed app developed using android android jetpack.
+Android news feed app developed using android jetpack.
 
 - Butterknife
 - Livedata
