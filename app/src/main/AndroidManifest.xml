@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tahir.transferwise_task_1">
+    package="com.tahir.newsfeedapp">
 
     <application
-        android:name=".Configurations.App"
+        android:name="com.tahir.newsfeedapp.Configurations.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name=".MainActivity"
+            android:name="com.tahir.newsfeedapp.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.News_Detail_Activity"
+            android:name="com.tahir.newsfeedapp.Activities.News_Detail_Activity"
 
             android:screenOrientation="portrait"></activity>
     </application>
